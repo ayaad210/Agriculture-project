@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Agriculture_projectv1.Models.Fertilizer>
+
+
+
+
+<div class="mrgb5 ">
+    <h2>Add used Fertlizers</h2>
+
+    <div class="row">
+        <div class="col-lg-4">
+        </div>
+
+        <div class="col-lg-3">@Html.DropDownList("Fertilizers", ViewBag.Fertilizers as SelectList, "- Select Company --", new { @id = "fertcomp", @class = "form-control" })</div>
+
+        <div class="col-lg-1">
+            <input type="button" value="+" class="btnaddNew btn btn-block btn-primary" id="btnaddNew" />
+
+        </div>
+
+        
+    </div>
+    <div class="row">
+
+        <table id="mytable1" class="table  tc">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>Delete</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        <input type="button" class="btndelete btn-danger" id="btndelete" value="-" />
+                        <input type="hidden" value="@item.id" />
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+</div>
+
+
+
+
+
+  
+
+
+
+
+
+<style>
+    th {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .tc {
+        font-weight: bolder;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

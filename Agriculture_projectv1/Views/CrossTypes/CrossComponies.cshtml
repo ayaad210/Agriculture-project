@@ -1,0 +1,157 @@
+﻿@model IEnumerable<Agriculture_projectv1.Models.Compony>
+
+@{
+    ViewBag.Title = "CropsCompanies";
+}
+
+
+<div class="container body-content mrgt5" >
+    <h2>Crops Componies</h2>
+
+    <div class="row">
+        <div class="col-lg-4">
+         </div>
+
+            <div class="col-lg-3">@Html.DropDownList("Componies", ViewBag.Componies as SelectList, "- Select Company --", new { @id = "dropcomp", @class = "form-control" })</div>
+
+            <div class="col-lg-1">
+                <input type="button" value="+" class="btnaddNew btn btn-block btn-primary" id="btnaddNew" />
+
+            </div>
+
+
+        </div>
+    <div class="row">
+
+        <table id="mytable" class="table tc">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>Delete</th>
+            </tr>
+
+            @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+
+                        @item.Name
+                    </td>
+
+
+                    <td>
+                        <input type="button" class="btndelete btn-danger" id="btndelete" value="-" />
+                        <input type="hidden" value="@item.id" />
+
+                    </td>
+                </tr>
+        }
+
+        </table>
+    </div>
+
+
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+
+    $(document).on('click','.btnaddNew', function(){
+   // $('.btnaddNew').click(function () {
+        alert("s");
+        var Cropsid_ = @Url.RequestContext.RouteData.Values["id"];
+        var Compid_ = document.getElementById("dropcomp").value;
+
+        $.ajax({
+            data: { 'Companyid': Compid_,  'cropsTypeid':  Cropsid_},
+            type:'GET',
+            url:'@Url.Action("InsertCropsTypeCompony")',
+            cache:false,
+            success: function(response) {
+
+                $('#mytable').append(response)
+
+
+            }
+        });
+
+
+    });
+
+
+
+    $(document).on('click','.btndelete', function(){
+        //$('.btndelete').click(function () {
+        var Cropsid_ = @Url.RequestContext.RouteData.Values["id"];
+
+        var item=this;
+        var Compid_ =item.nextElementSibling.value ;
+
+        $.ajax({
+            data: { 'Companyid': Compid_,  'cropsTypeid':  Cropsid_},
+            type:'GET',
+                url:'@Url.Action("DeleteCropsTypeCompany")',
+                cache:false,
+                success: function(response) {
+
+                      item.parentElement.parentElement.hidden=true;
+                    if (response=="1") {
+                        item.parentElement.parentElement.hidden=true;
+
+                    }
+                    else {
+                        alert("Failed");
+                    }
+
+                }
+            });
+
+
+
+    });
+
+
+
+
+
+
+
+
+    </script>
+
+
+}
+
+
+<style>
+    th {
+        text-align: center;
+        font-weight: bold;
+    }
+    .tc{
+        font-weight:bolder;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+﻿
+@model IEnumerable<Agriculture_projectv1.Models.CrossType>
+
+
+
+
+<div class="mrgb5  ">
+    <h2>Add used Crops Types</h2>
+
+    <div class="row">
+        <div class="col-lg-4">
+        </div>
+
+        <div class="col-lg-3">@Html.DropDownList("CrossTypes", ViewBag.CrossTypes as SelectList, "- Select CropsTypes --", new { @id = "cropscomp", @class = "form-control" })</div>
+        
+        <div class="col-lg-1">
+            <input type="button" value="+" class="btnaddNewCrops btn btn-block btn-primary" id="btnaddNewCrops" />
+      </div>
+    </div>
+    <div class="row">
+
+        <table id="mytable2" class="table  tc">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>Delete</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+
+                        @item.Name
+                    </td>
+
+
+                    <td>
+                        <input type="button" class="btndeletecrops btn-danger" id="btndeletecrops" value="-" />
+                        <input type="hidden" value="@item.id" />
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    th {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .tc {
+        font-weight: bolder;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

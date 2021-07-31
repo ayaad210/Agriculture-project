@@ -1,0 +1,214 @@
+﻿@model Agriculture_projectv1.Models.Consulte
+
+@{
+    ViewBag.Title = "Edit";
+
+}
+
+<br />
+<div class="body-content container mrgt5">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+            <h4>Consulte</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.ApplicationUser.Name)
+            @Html.HiddenFor(model => model.ApplicationUser.Email)
+            <div class="col-lg-12">
+
+                <div class="form-group">
+                    @Model.ApplicationUser.Name
+                    @Model.ApplicationUser.Email
+                </div>
+            </div>
+                          <div class="col-lg-12">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GoverorenatId, htmlAttributes: new { @class = "control-label " })
+
+                        @*@Html.EditorFor(model => model.GoverorenatId, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownList("GoverorenatId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.GoverorenatId, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SoilTypeId, "SoilTypeId", htmlAttributes: new { @class = "control-label " })
+
+                        @Html.DropDownList("SoilTypeId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SoilTypeId, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+               <div class="col-lg-6">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AreaOfSoil, htmlAttributes: new { @class = "control-label " })
+                        @Html.EditorFor(model => model.AreaOfSoil, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AreaOfSoil, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+               <div class="col-lg-12">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label " })
+                        @Html.TextAreaFor(model => model.Notes, new { @class = "TextArea form-control", @style = "width:100%" })
+        
+                                        @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5" id="continue">
+
+                    @Html.Action("ConsultesFert", new { id = Url.RequestContext.RouteData.Values["id"] })
+                </div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-5">
+                    @Html.Action("ConsultesCrops", new { id = Url.RequestContext.RouteData.Values["id"] })
+
+
+                </div>
+
+
+
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Response, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.Response, new { @class = "TextArea form-control", @style = "width:100%" })
+                    @Html.ValidationMessageFor(model => model.Response, "", new { @class = "text-danger" })
+                </div>
+            </div>
+                <div class="col-lg-12">
+                   <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+            </div>
+    }
+
+
+   
+   
+
+
+
+
+    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<style>
+    .TextArea {
+        width: 100%;
+    }
+</style>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        (function () {
+            var x = document.getElementsByTagName("TextArea");
+            for (var i = 0; i < x.length; i++) {
+                x[i].removeAttribute("cols");
+                x[i].removeAttribute("rows");
+            }
+        })();
+     $(document).on('click','.btnaddNew', function(){
+   // $('.btnaddNew').click(function () {
+        var consid_ = @Url.RequestContext.RouteData.Values["id"];
+        var Dertid_ = document.getElementById("fertcomp").value;
+        $.ajax({
+            data: { 'Consulteid': consid_,  'Fertid': Dertid_},
+            type:'GET',
+            url:'@Url.Action("InsertCosulteFert")',
+            cache:false,
+            success: function(response) {
+                $('#mytable1').append(response)
+           }
+        });
+   });
+   $(document).on('click','.btndelete', function(){
+        //$('.btndelete').click(function () {
+        var consid_ = @Url.RequestContext.RouteData.Values["id"];
+
+        var item=this;
+        var Dertid_ =item.nextElementSibling.value ;
+        $.ajax({
+            data: { 'Consulteid': consid_,  'Fertid': Dertid_},
+                type:'GET',
+                url:'@Url.Action("Deleteconsultefert")',
+                cache:false,
+                success: function(response) {
+
+                    if (response=="1") {
+                        item.parentElement.parentElement.hidden=true;
+                    }
+                    else {
+                        alert("Failed");
+                    }
+                }
+            });
+
+
+
+    });
+</script>
+
+
+
+
+
+
+
+
+<script>
+     
+    $(document).on('click','.btnaddNewCrops', function(){
+   // $('.btnaddNew').click(function () {
+        var consid_ = @Url.RequestContext.RouteData.Values["id"];
+        var cropsid_ = document.getElementById("cropscomp").value;
+        $.ajax({
+            data: { 'Consulteid': consid_,  'cropsid': cropsid_},
+            type:'GET',
+            url:'@Url.Action("InsertCosulteCrops")',
+            cache:false,
+            success: function(response) {
+                $('#mytable2').append(response)
+           }
+        });
+   });
+    $(document).on('click','.btndeletecrops', function(){
+        //$('.btndelete').click(function () {
+        var consid_ = @Url.RequestContext.RouteData.Values["id"];
+
+        var item=this;
+        var cropsid_ =item.nextElementSibling.value ;
+
+        $.ajax({
+            data: { 'Consulteid': consid_,  'cropsid': cropsid_},
+                type:'GET',
+                url:'@Url.Action("Deleteconsultecrops")',
+                cache:false,
+                success: function(response) {
+
+                    if (response=="1") {
+                        item.parentElement.parentElement.hidden=true;
+                    }
+                    else {
+                        alert("Failed");
+                    }
+                }
+            });
+
+
+
+    });
+</script>
+}
+

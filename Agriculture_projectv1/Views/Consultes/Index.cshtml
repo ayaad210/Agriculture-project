@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Agriculture_projectv1.Models.Consulte>
+
+@{
+    ViewBag.Title = "Index";
+}
+<hr />
+<div class="body-content container mrgt5">
+
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn",@style = "background-color:#4CAF50 " })
+    </p>
+
+    @{ int i = 1;}
+    @foreach (var item in Model)
+    {
+         MvcHtmlString q= new MvcHtmlString("<span style='color:red'>X</span>" );
+        if (item.Response!=null&&item.Response!="")
+        {
+            q =new MvcHtmlString ("<span style='color:#4cff00'>&#10004</span>");
+        }
+        <div class="col-lg-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2 style="margin-bottom:8%;max-height:25px" class="card-title ">Consute @i @q<h2>
+
+                    @Html.ActionLink("Details", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) 
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn" ,@style= "background-color:#ff6a00 " })
+
+                    <hr />
+
+
+                </div>
+            </div>
+
+        </div>
+
+        i++;
+        @*@Html.ActionLink("Details", "Details", new { id=item.Id })*@
+    }
+
+</div>
+    <style>
+        .card {
+            box-shadow: 5px 5px 8px 5px rgba(80,255,255,0.2);
+            transition: 0.3s;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+                
+            }
+    </style>
+   

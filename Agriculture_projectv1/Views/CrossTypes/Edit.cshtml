@@ -1,0 +1,115 @@
+﻿@model Agriculture_projectv1.Models.CrossTypeViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<br />
+<div class="body-content container mrgt5">
+    @using (Html.BeginForm("Edit", "CrossTypes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mrgt5">
+            <h4> Edit CropsType</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger contact-form" })
+            <div class="col-lg-6">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+                <div class="form-group ">
+                    @Html.TextAreaFor(model => model.Notes, htmlAttributes: new { @class = "form-control TextArea", @style = "height:125px" })
+                    @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-lg-12">
+                @Html.LabelFor(model => model.seasons, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+                <div class="form-group">
+                    @Html.TextAreaFor(model => model.seasons, htmlAttributes: new { @class = "form-control TextArea" })
+                    @Html.ValidationMessageFor(model => model.seasons, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Pesticidesdates, htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.Pesticidesdates, htmlAttributes: new { @class = "form-control TextArea" })
+                    @Html.ValidationMessageFor(model => model.Pesticidesdates, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label>Choose Image If You Want To Edit Existing one</label>
+
+                <div class="form-group">
+
+                    @Html.TextBoxFor(model => model.ImageFile, "", new { @type = "file", @multiple = "multiple", @class = "form-control" })
+                    @Html.HiddenFor(model => model.Image )
+
+
+                    @*<p class="field-validation-error">@ViewBag.File  @ViewBag.Error</p>*@
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+
+                <div class="form-group">
+                    <input type="submit" value="Edit" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<style>
+    .TextArea {
+        width: 100%;
+    }
+</style>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+
+        (function () {
+            var x = document.getElementsByTagName("TextArea");
+            for (var i = 0; i < x.length; i++) {
+                x[i].removeAttribute("cols");
+                x[i].removeAttribute("rows");
+            }
+
+
+
+        })();
+    </script>
+}
+
+

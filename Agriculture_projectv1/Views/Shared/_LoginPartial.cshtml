@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin
+@using Agriculture_projectv1.Models
+@if (Request.IsAuthenticated)
+{
+    ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    <div class="nav navbar-nav navbar">
+
+
+
+        @if (user.Roles.Where(r => r.RoleId == new ApplicationDbContext().Roles.Where(rr => rr.Name == "Admins").First().Id).ToList().Count > 0)
+        {
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Mange
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="~/CrossTypes/Index">Crops Types</a>
+                    </li>
+                    <li>
+                        <a href="~/Governorates/Index">Governorate</a>
+                    </li>
+                    <li>
+                        <a href="~/Fertilizers/Index">Fertilizers</a>
+                    </li>
+                    <li>
+
+                        <a href="~/SoilTypes/Index">Soil Types</a>
+                    </li>
+                    <li>
+                        <a href="~/Componies/Index">Componies</a>
+                    </li>
+                    <li>
+                        <a href="~/Consultes/Index">Consultes</a>
+                    </li>
+                    <li>
+                        <a href="~/Account/index"> Users _Admins</a>
+                    </li>
+                </ul>
+            </div>
+
+        }
+        else
+        {
+
+
+            <ul class="nav navbar-nav navbar">
+                <li>
+                    <a href="~/CrossTypes/Index">Instructions </a>
+                </li>
+                <li>
+                    <a href="~/Consultes/Index">Your Consultes</a>
+                </li>
+            </ul>
+        }
+
+    </div>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+        <li><a href="#works">Login</a></li>
+
+    </ul>
+}

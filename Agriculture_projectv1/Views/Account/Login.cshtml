@@ -1,0 +1,64 @@
+﻿@using Agriculture_projectv1.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+
+}
+<section style="margin-top:5%">
+    <div class="stay-in parallax" id="logfrm">
+        <!-- Block Title -->
+        <div class="overlay">
+            <div class="wrapper-block-stay-in">
+                <div class="element-title">
+                    <div class="row">
+                        <div class="container">
+                            <h1 class="main-color wow fadeInDown" data-wow-duration="1s" data-wow-delay="300ms">Login Now</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Block Title -->
+                <div class="signup">
+                    <div class="row">
+                        <div class="container">
+                            <div class="sign_form wow fadeInLeft" data-wow-duration="1s" data-wow-delay="300ms">
+
+                                @using (Ajax.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, new AjaxOptions()
+                                {
+                                    UpdateTargetId = "logfrm",
+                                    HttpMethod = "POST",
+                                    InsertionMode = InsertionMode.Replace,
+                                    LoadingElementId = "progress2"
+
+                                }, htmlAttributes: new { @id = "sign-form", target = "_self" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-box" })
+
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input-box" })
+
+
+                                    <input type="submit" value="Sign Up">
+
+                                }
+
+
+                                <div id="signup-error"></div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

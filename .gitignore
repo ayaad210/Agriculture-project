@@ -1,0 +1,6 @@
+packages
+packages/**
+.vs
+.vs/**
+Agriculture_projectv1/obj
+Agriculture_projectv1/bin

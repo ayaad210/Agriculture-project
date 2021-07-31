@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <title>ss</title>
+    <meta name="description" content="Xlight Bootstrap Responsive HTML5/CSS3 Template">
+    <meta name="author" content="Andsolutions.it">
+    <meta name="description" content="">
+
+    <link href="~/Content/TeamTheme/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/TeamTheme/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/TeamTheme/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/TeamTheme/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/TeamTheme/css/prettyPhoto.css" rel="stylesheet" />
+
+    <link href="~/Content/TeamTheme/css/theme.css" rel="stylesheet" />
+    <link href="~/Content/TeamTheme/css/responsive.css" rel="stylesheet" />
+    @*<link href="~/Content/TeamTheme/css/colors/blue.css" rel="stylesheet" />*@
+    <link href="~/Content/TeamTheme/css/colors/green.css" rel="stylesheet" />
+
+
+    <!-- Google Font -->
+    @*<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>*@
+
+    <!-- Favicons -->
+
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon" href="images/ico/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/ico/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/ico/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/ico/apple-touch-icon-144.png">
+    <style>
+        .mrgt5 {
+            margin-top: 5%;
+        }
+
+        .tlf {
+            text-align: left;
+        }
+
+        .tc {
+            text-align: center;
+        }
+        html, body {
+            background-image: url(../../Content/TeamTheme/images/slider/bg-1.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+            /*.navbar-brand {
+	background: url("../../Content/img/aaa2.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat:no-repeat;
+    background-size:cover;
+    width: 110px;
+	height: 50px;
+	margin-left: 20px;
+	margin-right: 30px;
+	max-width: 110px;
+}*/
+        
+
+    </style>
+
+</head>
+<body data-spy="scroll" data-target="#mynav" data-offset="85" >
+
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+    </div>
+    
+    <header>
+
+        <!-- Bootstrap Menu -->
+        <div id="navigation">
+            <div class="navbar-wrapper scroll-fixed-navbar">
+                <nav class="navbar-inverse navbar-static-top" role="navigation">
+                    <div class="container">
+                        <div class="row">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="#"> <h2  style="margin:0;font-family:'Felix Titling';color:white " class="team-member-name"><span class="main-color">F</span>arma <span class="main-color">L</span>ogy</h2></a>
+                            </div>
+                            <div id="mynav" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav main-nav-list">
+                                    <li><a href="#home">Home</a></li>
+                                    <li><a href="#team">About</a></li>
+                                    <li><a href="#contacts">Contact</a></li>
+                                </ul>
+                                @Html.Partial("_LoginPartial")
+
+
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Slider -->
+        <!-- End Slider -->
+    </header>
+
+    <div class="body-content">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    <script src="~/Content/TeamTheme/js/jquery.min.js"></script>
+    <script src="~/Content/TeamTheme/js/bootstrap.min.js"></script>
+    <script src="~/Content/TeamTheme/js/retina.min.js"></script>
+    <script src="~/Content/TeamTheme/js/jquery.easing.min.js"></script>
+    <script src="~/Content/TeamTheme/js/wow.min.js"></script>
+    <script src="~/Content/TeamTheme/js/waypoints.min.js"></script>
+    <script src="~/Content/TeamTheme/js/jquery.countTo.js"></script>
+    <script src="~/Content/TeamTheme/js/jquery.mixitup.js"></script>
+    <script src="~/Content/TeamTheme/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Content/TeamTheme/js/jquery.knob.js"></script>
+    <script src="~/Content/TeamTheme/js/jquery.validate.min.js"></script>
+    <script src="~/Content/TeamTheme/js/custom.js"></script>
+</body>
+</html>

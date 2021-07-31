@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Agriculture_projectv1.Models.SoilType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container  body-content mrgt5 center-block ">
+    <h3>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+    </h3>
+
+    <table class="table  tc">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th> manage</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<style>
+    th {
+        text-align: center;
+        font-weight: bold;
+    }
+
+      
+
+        .tc {
+            font-weight: bolder;
+        }
+                .tc a{
+            color:white;
+        }
+</style>
+

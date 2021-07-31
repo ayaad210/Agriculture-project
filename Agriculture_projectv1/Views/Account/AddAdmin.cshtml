@@ -1,0 +1,106 @@
+﻿@model Agriculture_projectv1.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+<section style="margin-top:5%">
+    <div class="stay-in parallax" id="regfrm">
+        <!-- Block Title -->
+        <div class="overlay">
+            <div class="wrapper-block-stay-in">
+                <div class="element-title">
+                    <div class="row">
+                        <div class="container">
+                            <h1 class="main-color wow fadeInDown" data-wow-duration="1s" data-wow-delay="300ms">Add Admin</h1>
+                            <h3 class="white-color wow fadeInUp" data-wow-duration="1s" data-wow-delay="300ms"> Admin Register</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Block Title -->
+                <div class="signup">
+                    <div class="row">
+                        <div class="container">
+                            <div class="sign_form wow fadeInLeft" data-wow-duration="1s" data-wow-delay="300ms">
+
+                                @using (Ajax.BeginForm("AddAdmin", "Account", null, new AjaxOptions()
+                                {
+                                    UpdateTargetId = "regfrm",
+                                    HttpMethod = "POST",
+                                    InsertionMode = InsertionMode.Replace,
+                                    LoadingElementId = "progress2"
+
+                                }, htmlAttributes: new { @id = "sign-form", target = "_self" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control input-box", id = "Name", @placeholder = "Name" })
+
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-box", id = "Email", @placeholder = "Email" })
+
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input-box", id = "Password", @placeholder = "Password" })
+
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-box", id = "ConfirmPassword", @placeholder = "Confirm Pss" })
+
+                                    <input type="submit" value="Sign Up">
+
+                                }
+
+
+                                <div id="signup-error"></div>
+                                <p>Promise we do not spam : )</p>
+                                <!-- / END SUBSCRIPTION FORM -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="container">
+                        <div class="wrapper-tweet">
+                            <!-- Twitter -->
+                            <div class="tweet wow fadeInRight" data-wow-duration="1s" data-wow-delay="700ms">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <div class="twitter-icon text-center">
+                                        <i class="fa fa-twitter"></i>
+                                        <h4>MyWebSite</h4>
+                                    </div>
+                                    <div id="twitter-carousel" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#twitter-carousel" data-slide-to="0" class="active"></li>
+                                            <li data-target="#twitter-carousel" data-slide-to="1"></li>
+                                            <li data-target="#twitter-carousel" data-slide-to="2"></li>
+                                        </ol><!-- /.carousel-indicators -->
+
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <p>Xlight Bootstrap Retina Flat One Page Theme <a href="#"><span>#bootstrap #retina</span> #MyWebSite</a></p>
+                                            </div>
+                                            <div class="item">
+                                                <p>Xlight is Fully Responsive Template <a href="#"><span>#simple #elegant #responsive</span> #MyWebSite</a></p>
+                                            </div>
+                                            <div class="item">
+                                                <p>Xlight is the best solution for your Agency <a href="#"><span>#onepagetheme #xlight</span> #MyWebSite</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Twitter -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="progress2">
+
+
+
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
